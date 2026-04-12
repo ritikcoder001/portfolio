@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritik Chauhan — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --accent: #00e5ff;
+    --accent2: #7b61ff;
+    --accent3: #ff6b6b;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.3rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-family: 'DM Mono', monospace; font-size: 0.82rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 6rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: 
+      radial-gradient(ellipse 80% 50% at 20% 40%, rgba(0,229,255,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 80% 60%, rgba(123,97,255,0.07) 0%, transparent 60%);
+  }
+
+  .grid-overlay {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 1100px; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 2rem; height: 1px; background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 0.95; letter-spacing: -0.03em;
+    color: var(--text); margin-bottom: 0.5rem;
+  }
+  .hero-name span { color: var(--accent); display: block; }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600; font-size: 1.2rem;
+    color: var(--muted); margin: 1.5rem 0;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-desc {
+    color: rgba(232,232,240,0.65);
+    font-size: 1rem; line-height: 1.8; max-width: 480px;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    font-family: 'DM Mono', monospace; font-size: 0.82rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; border-radius: 4px; cursor: pointer;
+    transition: all 0.25s; border: none;
+  }
+  .btn-primary {
+    background: var(--accent); color: #0a0a0f;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: #33eaff; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,229,255,0.3); }
+
+  .btn-outline {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* HERO CARD */
+  .hero-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: -1px; left: 2rem; right: 2rem; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+  }
+
+  .avatar-ring {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem;
+    color: #0a0a0f; margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+  .stat-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border); border-radius: 8px; padding: 1rem;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem;
+    color: var(--accent); line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; letter-spacing: 0.05em; }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .tag {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    padding: 0.35rem 0.75rem; border-radius: 100px;
+    border: 1px solid var(--border); color: var(--muted);
+  }
+  .tag.accent { border-color: rgba(0,229,255,0.3); color: var(--accent); background: rgba(0,229,255,0.05); }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 6rem 4rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace; font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.02em;
+    line-height: 1.1; margin-bottom: 1.5rem;
+  }
+
+  /* SKILLS SECTION */
+  .skills-section { background: var(--surface); }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.8rem;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .skill-card:hover { transform: translateY(-4px); border-color: rgba(0,229,255,0.2); }
+
+  .skill-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1rem;
+  }
+  .skill-card h3 {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .pill {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    padding: 0.25rem 0.6rem; border-radius: 4px;
+    background: rgba(255,255,255,0.05); color: rgba(232,232,240,0.7);
+    border: 1px solid var(--border);
+  }
+
+  /* PROJECTS PREVIEW */
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .project-card:hover { transform: translateY(-5px); border-color: rgba(123,97,255,0.3); }
+  .project-card::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .project-card:hover::after { transform: scaleX(1); }
+  .project-num {
+    font-family: 'DM Mono', monospace; font-size: 0.75rem;
+    color: var(--muted); margin-bottom: 1rem;
+  }
+  .project-card h3 {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem;
+    margin-bottom: 0.75rem; color: var(--text);
+  }
+  .project-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* ACHIEVEMENTS */
+  .achievements-section { background: var(--surface); }
+  .ach-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; }
+  .ach-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .ach-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .ach-item h4 {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+  .ach-item p { font-size: 0.82rem; color: var(--muted); }
+
+  /* CONTACT STRIP */
+  .contact-strip {
+    background: linear-gradient(135deg, rgba(0,229,255,0.08), rgba(123,97,255,0.08));
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 4rem;
+    text-align: center;
+  }
+  .contact-strip h2 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 1rem;
+  }
+  .contact-strip p { color: var(--muted); max-width: 500px; margin: 0 auto 2rem; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace; font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.45s; }
+  .delay-4 { animation-delay: 0.6s; }
+
+  .cursor-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); margin-left: 4px;
+    animation: blink 1.2s infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  @media(max-width:900px){
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .hero, section { padding: 5rem 1.5rem 4rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+    .ach-list { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">RC</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="qa.html">QA Work</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow fade-up">MCA Student · Chandigarh University</div>
+      <h1 class="hero-name fade-up delay-1">
+        Ritik
+        <span>Chauhan<span class="cursor-dot"></span></span>
+      </h1>
+      <p class="hero-title fade-up delay-2">Data Analyst · QA Engineer · Developer</p>
+      <p class="hero-desc fade-up delay-3">
+        Building data-driven applications, ensuring software quality, and crafting clean solutions. 
+        Passionate about Python, Machine Learning, and Software Testing.
+      </p>
+      <div class="hero-cta fade-up delay-4">
+        <a href="projects.html" class="btn btn-primary">View Projects →</a>
+        <a href="contact.html" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-card fade-up delay-2">
+      <div class="avatar-ring">RC</div>
+      <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;">Ritik Chauhan</p>
+      <p style="font-size:0.82rem;color:var(--muted);margin:0.25rem 0;">Saharanpur, UP · ritikchauhan9765@gmail.com</p>
+
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Projects Built</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Research Paper</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2026</div>
+          <div class="stat-label">MCA Graduate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2x</div>
+          <div class="stat-label">Certified</div>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag accent">Python</span>
+        <span class="tag accent">SQL</span>
+        <span class="tag">Manual Testing</span>
+        <span class="tag">Postman</span>
+        <span class="tag">ML</span>
+        <span class="tag">Data Analysis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS PREVIEW -->
+<section class="skills-section">
+  <div class="section-inner">
+    <div class="section-label">What I Do</div>
+    <h2 class="section-title">Skills & Expertise</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🧪</div>
+        <h3>QA & Testing</h3>
+        <div class="skill-pills">
+          <span class="pill">Manual Testing</span>
+          <span class="pill">Regression</span>
+          <span class="pill">Smoke Testing</span>
+          <span class="pill">Test Cases</span>
+          <span class="pill">Bug Reporting</span>
+          <span class="pill">STLC / SDLC</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <h3>Data & Analysis</h3>
+        <div class="skill-pills">
+          <span class="pill">Python</span>
+          <span class="pill">Pandas</span>
+          <span class="pill">NumPy</span>
+          <span class="pill">Matplotlib</span>
+          <span class="pill">SQL</span>
+          <span class="pill">Excel</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤖</div>
+        <h3>Development & ML</h3>
+        <div class="skill-pills">
+          <span class="pill">Tkinter GUI</span>
+          <span class="pill">Machine Learning</span>
+          <span class="pill">HTML / CSS</span>
+          <span class="pill">Postman API</span>
+          <span class="pill">Google Sheets</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="about.html" class="btn btn-outline">Full Profile →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS PREVIEW -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+      <a href="projects.html" class="project-card">
+        <div class="project-num">01 / Dev</div>
+        <h3>Weather Data Visualization</h3>
+        <p>Analyzed and visualized weather trends using Python, Pandas, NumPy & Matplotlib through interactive charts.</p>
+      </a>
+      <a href="projects.html" class="project-card">
+        <div class="project-num">02 / Dev</div>
+        <h3>Employee Management System</h3>
+        <p>Full-stack desktop app using Python Tkinter + SQL database integration for complete employee record management.</p>
+      </a>
+      <a href="projects.html" class="project-card">
+        <div class="project-num">03 / Dev</div>
+        <h3>Mental Health Chatbot</h3>
+        <p>ML-driven chatbot providing rule-based and intelligent responses for mental health guidance and support.</p>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="projects.html" class="btn btn-outline">All Projects →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements-section">
+  <div class="section-inner">
+    <div class="section-label">Recognition</div>
+    <h2 class="section-title">Achievements</h2>
+    <div class="ach-list">
+      <div class="ach-item">
+        <span class="ach-icon">📄</span>
+        <div>
+          <h4>Published Research Paper</h4>
+          <p>IJARIIT Vol.11, Issue 5 — Hybrid Logistic Regression & Random Forest for Diabetes Prediction</p>
+        </div>
+      </div>
+      <div class="ach-item">
+        <span class="ach-icon">🏆</span>
+        <div>
+          <h4>District-Level Badminton Champion</h4>
+          <p>Demonstrated discipline and competitive excellence in district-level tournament</p>
+        </div>
+      </div>
+      <div class="ach-item">
+        <span class="ach-icon">🎓</span>
+        <div>
+          <h4>Deloitte Data Analytics Simulation</h4>
+          <p>Successfully completed Deloitte Data Analytics Virtual Job Simulation via Forage</p>
+        </div>
+      </div>
+      <div class="ach-item">
+        <span class="ach-icon">✅</span>
+        <div>
+          <h4>SQL Certification – Coursera</h4>
+          <p>Earned certification in SQL CASE Statements from Coursera Project Network</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <h2>Let's Work Together</h2>
+  <p>Open to internships, projects, and collaborations in Data Science, QA, or Software Development.</p>
+  <div class="contact-links">
+    <a href="contact.html" class="btn btn-primary">Say Hello →</a>
+    <a href="https://www.linkedin.com/in/ritik-chauhan-a96b35332" target="_blank" class="btn btn-outline">LinkedIn</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Ritik Chauhan</span>
+  <span>MCA · Chandigarh University</span>
+</footer>
+
+</body>
+</html>

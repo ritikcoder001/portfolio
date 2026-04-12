@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Ritik Chauhan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0f;--surface:#111118;--card:#16161f;--accent:#00e5ff;--accent2:#7b61ff;--accent3:#ff6b6b;--text:#e8e8f0;--muted:#6b6b80;--border:rgba(255,255,255,0.07);}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--accent);text-decoration:none;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.82rem;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.25s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--accent);}
+
+  .page-hero{padding:10rem 4rem 5rem;position:relative;overflow:hidden;}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 80%,rgba(0,229,255,0.06),transparent);}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;}
+  .page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;text-align:center;}
+  .page-label{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+  .page-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,5vw,5.5rem);letter-spacing:-0.03em;line-height:1;margin-bottom:1.2rem;}
+  .page-sub{color:var(--muted);max-width:500px;margin:0 auto;font-size:1rem;line-height:1.7;}
+
+  main{max-width:1100px;margin:0 auto;padding:5rem 4rem;}
+
+  .contact-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;}
+
+  /* CONTACT INFO */
+  .contact-info h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;margin-bottom:1.5rem;letter-spacing:-0.02em;}
+
+  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1rem;display:flex;align-items:center;gap:1.2rem;transition:border-color 0.25s,transform 0.2s;text-decoration:none;color:inherit;}
+  .contact-card:hover{border-color:rgba(0,229,255,0.25);transform:translateX(4px);}
+  .cc-icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(123,97,255,0.15));border:1px solid rgba(0,229,255,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .cc-label{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;}
+  .cc-val{font-size:0.9rem;color:var(--text);}
+
+  .availability-box{background:var(--card);border:1px solid rgba(0,229,255,0.15);border-radius:12px;padding:1.5rem;margin-top:1.5rem;position:relative;overflow:hidden;}
+  .availability-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+  .avail-header{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.8rem;}
+  .green-dot{width:10px;height:10px;border-radius:50%;background:#00e676;box-shadow:0 0 8px rgba(0,230,118,0.5);flex-shrink:0;}
+  .avail-header span{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;}
+  .avail-text{font-size:0.83rem;color:var(--muted);line-height:1.6;}
+  .avail-roles{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;}
+  .role-tag{font-family:'DM Mono',monospace;font-size:0.68rem;padding:0.3rem 0.6rem;border-radius:4px;background:rgba(0,229,255,0.07);border:1px solid rgba(0,229,255,0.15);color:var(--accent);}
+
+  /* FORM */
+  .form-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;position:relative;overflow:hidden;}
+  .form-card::before{content:'';position:absolute;top:-1px;left:2rem;right:2rem;height:2px;background:linear-gradient(90deg,transparent,var(--accent2),var(--accent),transparent);}
+
+  .form-card h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;margin-bottom:2rem;letter-spacing:-0.02em;}
+
+  .field-group{margin-bottom:1.5rem;}
+  label{display:block;font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
+  input,textarea,select{
+    width:100%;background:rgba(255,255,255,0.04);
+    border:1px solid var(--border);border-radius:6px;
+    padding:0.85rem 1rem;color:var(--text);
+    font-family:'DM Sans',sans-serif;font-size:0.9rem;
+    transition:border-color 0.25s,box-shadow 0.25s;
+    outline:none;resize:vertical;
+  }
+  input:focus,textarea:focus,select:focus{border-color:rgba(0,229,255,0.4);box-shadow:0 0 0 3px rgba(0,229,255,0.07);}
+  textarea{min-height:130px;}
+  select option{background:var(--card);}
+
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+
+  .btn-submit{
+    width:100%;padding:1rem;border:none;border-radius:6px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#0a0a0f;font-family:'DM Mono',monospace;font-size:0.85rem;
+    letter-spacing:0.1em;text-transform:uppercase;font-weight:500;
+    cursor:pointer;transition:opacity 0.25s,transform 0.25s;
+    margin-top:0.5rem;
+  }
+  .btn-submit:hover{opacity:0.9;transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,229,255,0.25);}
+  .btn-submit:active{transform:translateY(0);}
+
+  .form-note{font-size:0.78rem;color:var(--muted);text-align:center;margin-top:1rem;}
+
+  /* BOTTOM STRIP */
+  .bottom-strip{background:var(--surface);border-top:1px solid var(--border);padding:3rem 4rem;margin-top:4rem;text-align:center;}
+  .bottom-strip p{font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--muted);margin-bottom:1.5rem;letter-spacing:0.05em;}
+  .social-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .social-link{display:inline-flex;align-items:center;gap:0.6rem;font-family:'DM Mono',monospace;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:0.6rem 1.2rem;transition:all 0.25s;}
+  .social-link:hover{color:var(--accent);border-color:rgba(0,229,255,0.3);}
+
+  footer{padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);}
+
+  /* SUCCESS TOAST */
+  .toast{position:fixed;bottom:2rem;right:2rem;background:var(--card);border:1px solid rgba(0,229,255,0.3);border-radius:10px;padding:1rem 1.5rem;font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--accent);display:flex;align-items:center;gap:0.7rem;transform:translateY(100px);opacity:0;transition:all 0.4s;z-index:999;}
+  .toast.show{transform:translateY(0);opacity:1;}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}.nav-links{gap:1rem;}
+    .page-hero,main,.bottom-strip{padding-left:1.5rem;padding-right:1.5rem;}
+    .contact-layout{grid-template-columns:1fr;}
+    .field-row{grid-template-columns:1fr;}
+    footer{flex-direction:column;gap:0.5rem;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">RC</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="qa.html">QA Work</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="grid-bg"></div>
+  <div class="page-hero-inner">
+    <div class="page-label">Get In Touch</div>
+    <h1 class="page-title">Let's Connect</h1>
+    <p class="page-sub">Open to internships, collaborations, and full-time opportunities in QA, Data Science, and Software Development.</p>
+  </div>
+</div>
+
+<main>
+  <div class="contact-layout">
+
+    <!-- LEFT -->
+    <div class="contact-info">
+      <h2>Contact Details</h2>
+
+      <a href="mailto:ritikchauhan9765@gmail.com" class="contact-card">
+        <div class="cc-icon">📧</div>
+        <div><div class="cc-label">Email</div><div class="cc-val">ritikchauhan9765@gmail.com</div></div>
+      </a>
+      <a href="tel:+917505119815" class="contact-card">
+        <div class="cc-icon">📱</div>
+        <div><div class="cc-label">Phone</div><div class="cc-val">+91 75051 19815</div></div>
+      </a>
+      <div class="contact-card">
+        <div class="cc-icon">📍</div>
+        <div><div class="cc-label">Location</div><div class="cc-val">Saharanpur, Uttar Pradesh, India</div></div>
+      </div>
+      <a href="https://www.linkedin.com/in/ritik-chauhan-a96b35332" target="_blank" class="contact-card">
+        <div class="cc-icon">💼</div>
+        <div><div class="cc-label">LinkedIn</div><div class="cc-val">ritik-chauhan-a96b35332</div></div>
+      </a>
+
+      <div class="availability-box">
+        <div class="avail-header">
+          <div class="green-dot"></div>
+          <span>Available for Opportunities</span>
+        </div>
+        <p class="avail-text">Currently pursuing MCA (2024–2026) and actively seeking internships and entry-level roles in:</p>
+        <div class="avail-roles">
+          <span class="role-tag">QA Engineer</span>
+          <span class="role-tag">Data Analyst</span>
+          <span class="role-tag">Python Developer</span>
+          <span class="role-tag">Software Tester</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="form-card">
+      <h2>Send a Message</h2>
+      <div class="field-row">
+        <div class="field-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="Your name">
+        </div>
+        <div class="field-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Last name">
+        </div>
+      </div>
+      <div class="field-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com">
+      </div>
+      <div class="field-group">
+        <label for="subject">Subject</label>
+        <select id="subject">
+          <option value="" disabled selected>Select a topic</option>
+          <option>Internship Opportunity</option>
+          <option>Project Collaboration</option>
+          <option>Job Opportunity</option>
+          <option>Research / Academic</option>
+          <option>General Enquiry</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label for="msg">Message</label>
+        <textarea id="msg" placeholder="Tell me about the opportunity or what you'd like to discuss..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="handleSubmit()">Send Message →</button>
+      <p class="form-note">I typically respond within 24–48 hours.</p>
+    </div>
+
+  </div>
+</main>
+
+<div class="bottom-strip">
+  <p>FIND ME ON</p>
+  <div class="social-row">
+    <a href="https://www.linkedin.com/in/ritik-chauhan-a96b35332" target="_blank" class="social-link">💼 LinkedIn</a>
+    <a href="mailto:ritikchauhan9765@gmail.com" class="social-link">📧 Email</a>
+    <a href="tel:+917505119815" class="social-link">📱 Phone</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Ritik Chauhan</span>
+  <span>Saharanpur, UP · India</span>
+</footer>
+
+<div class="toast" id="toast">✅ Message sent! I'll get back to you soon.</div>
+
+<script>
+function handleSubmit() {
+  const name = document.getElementById('fname').value;
+  const email = document.getElementById('email').value;
+  const msg = document.getElementById('msg').value;
+  if (!name || !email || !msg) {
+    alert('Please fill in Name, Email, and Message.');
+    return;
+  }
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3500);
+  // Clear form
+  document.getElementById('fname').value = '';
+  document.getElementById('lname').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('subject').selectedIndex = 0;
+  document.getElementById('msg').value = '';
+}
+</script>
+</body>
+</html>

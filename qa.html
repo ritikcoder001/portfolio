@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QA Work — Ritik Chauhan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0f;--surface:#111118;--card:#16161f;--accent:#00e5ff;--accent2:#7b61ff;--accent3:#ff6b6b;--text:#e8e8f0;--muted:#6b6b80;--border:rgba(255,255,255,0.07);}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--accent);text-decoration:none;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.82rem;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.25s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--accent);}
+
+  .page-hero{padding:10rem 4rem 5rem;background:var(--surface);position:relative;overflow:hidden;}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 90% 40%,rgba(255,107,107,0.05),transparent);}
+  .page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;}
+  .page-label{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+  .page-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,5vw,5rem);letter-spacing:-0.03em;line-height:1;}
+
+  .hero-stat-row{display:flex;gap:2rem;flex-wrap:wrap;}
+  .h-stat{text-align:center;}
+  .h-stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:2.5rem;color:var(--accent);}
+  .h-stat-lbl{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--muted);letter-spacing:0.05em;}
+
+  main{max-width:1100px;margin:0 auto;padding:5rem 4rem;}
+
+  /* PROCESS */
+  .process-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:2rem 0 4rem;position:relative;}
+  .process-row::before{content:'';position:absolute;top:2.2rem;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));z-index:0;}
+  .proc-step{text-align:center;position:relative;z-index:1;}
+  .proc-icon{width:44px;height:44px;border-radius:50%;background:var(--card);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin:0 auto 0.8rem;}
+  .proc-label{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--muted);letter-spacing:0.05em;line-height:1.4;}
+
+  /* SKILLS MATRIX */
+  .qa-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;}
+  .qa-cat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;}
+  .qa-cat h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;}
+  .qa-tag-cloud{display:flex;flex-wrap:wrap;gap:0.5rem;}
+  .qa-chip{font-family:'DM Mono',monospace;font-size:0.72rem;padding:0.35rem 0.75rem;border-radius:4px;}
+  .chip-blue{background:rgba(0,229,255,0.07);border:1px solid rgba(0,229,255,0.2);color:var(--accent);}
+  .chip-purple{background:rgba(123,97,255,0.07);border:1px solid rgba(123,97,255,0.2);color:var(--accent2);}
+  .chip-red{background:rgba(255,107,107,0.07);border:1px solid rgba(255,107,107,0.2);color:var(--accent3);}
+  .chip-grey{background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--muted);}
+
+  /* SAMPLE TEST CASE TABLE */
+  h2.section-h{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-0.02em;margin:4rem 0 1.5rem;}
+
+  .table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border);margin-top:1rem;}
+  table{width:100%;border-collapse:collapse;}
+  thead th{background:rgba(0,229,255,0.07);padding:0.9rem 1.2rem;font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-align:left;white-space:nowrap;}
+  tbody tr{border-top:1px solid var(--border);transition:background 0.2s;}
+  tbody tr:hover{background:rgba(255,255,255,0.02);}
+  tbody td{padding:0.85rem 1.2rem;font-size:0.85rem;color:rgba(232,232,240,0.8);vertical-align:top;}
+  .status{display:inline-block;font-family:'DM Mono',monospace;font-size:0.68rem;padding:0.2rem 0.6rem;border-radius:4px;}
+  .pass{background:rgba(0,229,255,0.1);color:var(--accent);}
+  .fail{background:rgba(255,107,107,0.1);color:var(--accent3);}
+  .nr{background:rgba(255,255,255,0.05);color:var(--muted);}
+
+  /* BUG LIFECYCLE */
+  .bug-flow{display:flex;flex-wrap:wrap;gap:0;align-items:center;margin-top:1.5rem;}
+  .bug-step{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0.7rem 1rem;font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted);flex-shrink:0;}
+  .bug-arrow{color:var(--accent);font-size:1.2rem;margin:0 0.5rem;flex-shrink:0;}
+  .bug-step.active{border-color:rgba(0,229,255,0.3);color:var(--accent);background:rgba(0,229,255,0.05);}
+
+  /* SDLC / STLC boxes */
+  .cycle-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem;}
+  .cycle-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;}
+  .cycle-box h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:1.2rem;color:var(--accent);}
+  .cycle-list{list-style:none;}
+  .cycle-list li{padding:0.5rem 0;border-bottom:1px solid var(--border);font-size:0.85rem;color:var(--muted);display:flex;align-items:center;gap:0.6rem;}
+  .cycle-list li:last-child{border-bottom:none;}
+  .cycle-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+
+  footer{padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}.nav-links{gap:1rem;}
+    .page-hero-inner,.qa-grid,.cycle-grid{grid-template-columns:1fr;}
+    .page-hero,main{padding-left:1.5rem;padding-right:1.5rem;}
+    .process-row{grid-template-columns:repeat(3,1fr);gap:1rem;}
+    .process-row::before{display:none;}
+    footer{flex-direction:column;gap:0.5rem;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">RC</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="qa.html" class="active">QA Work</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div>
+      <div class="page-label">Quality Assurance</div>
+      <h1 class="page-title">QA Engineering</h1>
+    </div>
+    <div class="hero-stat-row" style="justify-content:flex-end;">
+      <div class="h-stat"><div class="h-stat-num">3+</div><div class="h-stat-lbl">Projects Tested</div></div>
+      <div class="h-stat"><div class="h-stat-num">50+</div><div class="h-stat-lbl">Test Cases</div></div>
+      <div class="h-stat"><div class="h-stat-num">5+</div><div class="h-stat-lbl">Testing Types</div></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- TESTING PROCESS -->
+  <h2 class="section-h">My Testing Process</h2>
+  <div class="process-row">
+    <div class="proc-step"><div class="proc-icon">📋</div><div class="proc-label">Requirement<br>Analysis</div></div>
+    <div class="proc-step"><div class="proc-icon">🗂️</div><div class="proc-label">Test Plan &<br>Design</div></div>
+    <div class="proc-step"><div class="proc-icon">▶️</div><div class="proc-label">Test Case<br>Execution</div></div>
+    <div class="proc-step"><div class="proc-icon">🐛</div><div class="proc-label">Bug<br>Reporting</div></div>
+    <div class="proc-step"><div class="proc-icon">✅</div><div class="proc-label">Regression &<br>Sign-off</div></div>
+  </div>
+
+  <!-- QA SKILLS MATRIX -->
+  <h2 class="section-h">QA Skills Matrix</h2>
+  <div class="qa-grid">
+    <div class="qa-cat">
+      <h3>🧪 Testing Types</h3>
+      <div class="qa-tag-cloud">
+        <span class="qa-chip chip-blue">Manual Testing</span>
+        <span class="qa-chip chip-blue">Regression Testing</span>
+        <span class="qa-chip chip-blue">Smoke Testing</span>
+        <span class="qa-chip chip-blue">Functional Testing</span>
+        <span class="qa-chip chip-blue">UI Testing</span>
+        <span class="qa-chip chip-blue">API Testing</span>
+      </div>
+    </div>
+    <div class="qa-cat">
+      <h3>📝 Documentation</h3>
+      <div class="qa-tag-cloud">
+        <span class="qa-chip chip-purple">Test Plans</span>
+        <span class="qa-chip chip-purple">Test Cases</span>
+        <span class="qa-chip chip-purple">Test Scenarios</span>
+        <span class="qa-chip chip-purple">Bug Reports</span>
+        <span class="qa-chip chip-purple">Test Reports</span>
+        <span class="qa-chip chip-purple">Excel Sheets</span>
+      </div>
+    </div>
+    <div class="qa-cat">
+      <h3>🔧 Tools & Concepts</h3>
+      <div class="qa-tag-cloud">
+        <span class="qa-chip chip-grey">Postman</span>
+        <span class="qa-chip chip-grey">Excel</span>
+        <span class="qa-chip chip-grey">Google Sheets</span>
+        <span class="qa-chip chip-grey">SDLC</span>
+        <span class="qa-chip chip-grey">STLC</span>
+      </div>
+    </div>
+    <div class="qa-cat">
+      <h3>🎯 Testing Areas</h3>
+      <div class="qa-tag-cloud">
+        <span class="qa-chip chip-red">Login Modules</span>
+        <span class="qa-chip chip-red">Registration Flows</span>
+        <span class="qa-chip chip-red">Checkout Flows</span>
+        <span class="qa-chip chip-red">Form Validation</span>
+        <span class="qa-chip chip-red">REST APIs</span>
+        <span class="qa-chip chip-red">Response Codes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAMPLE TEST CASES -->
+  <h2 class="section-h">Sample Test Cases — E-Com360</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>TC ID</th>
+          <th>Module</th>
+          <th>Test Scenario</th>
+          <th>Expected Result</th>
+          <th>Actual Result</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--accent);">TC-001</td>
+          <td>Login</td>
+          <td>Valid credentials login</td>
+          <td>Redirect to dashboard</td>
+          <td>Redirected to dashboard</td>
+          <td><span class="status pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--accent);">TC-002</td>
+          <td>Login</td>
+          <td>Invalid password entry</td>
+          <td>Show error message</td>
+          <td>Error message displayed</td>
+          <td><span class="status pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--accent);">TC-003</td>
+          <td>Registration</td>
+          <td>Duplicate email registration</td>
+          <td>Show 'email already exists'</td>
+          <td>No error shown</td>
+          <td><span class="status fail">FAIL</span></td>
+        </tr>
+        <tr>
+          <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--accent);">TC-004</td>
+          <td>Checkout</td>
+          <td>Add item to cart and checkout</td>
+          <td>Order confirmation page</td>
+          <td>Order confirmed</td>
+          <td><span class="status pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--accent);">TC-005</td>
+          <td>Checkout</td>
+          <td>Checkout with empty cart</td>
+          <td>Show 'cart is empty' warning</td>
+          <td>Pending Verification</td>
+          <td><span class="status nr">N/R</span></td>
+        </tr>
+        <tr>
+          <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--accent);">TC-006</td>
+          <td>API</td>
+          <td>GET /products returns 200 OK</td>
+          <td>Status 200, product list</td>
+          <td>200 OK with data</td>
+          <td><span class="status pass">PASS</span></td>
+        </tr>
+        <tr>
+          <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--accent);">TC-007</td>
+          <td>API</td>
+          <td>POST with invalid input fields</td>
+          <td>Status 400 Bad Request</td>
+          <td>500 Internal Server Error</td>
+          <td><span class="status fail">FAIL</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BUG LIFECYCLE -->
+  <h2 class="section-h">Bug Life Cycle</h2>
+  <div class="bug-flow">
+    <div class="bug-step active">New</div>
+    <span class="bug-arrow">→</span>
+    <div class="bug-step active">Assigned</div>
+    <span class="bug-arrow">→</span>
+    <div class="bug-step active">Open</div>
+    <span class="bug-arrow">→</span>
+    <div class="bug-step">Fixed</div>
+    <span class="bug-arrow">→</span>
+    <div class="bug-step">Retest</div>
+    <span class="bug-arrow">→</span>
+    <div class="bug-step">Verified</div>
+    <span class="bug-arrow">→</span>
+    <div class="bug-step">Closed</div>
+  </div>
+  <p style="margin-top:1rem;font-size:0.85rem;color:var(--muted);">
+    Also tracked: Reopened → Duplicate → Deferred → Rejected statuses based on defect severity and priority.
+  </p>
+
+  <!-- SDLC / STLC -->
+  <h2 class="section-h">SDLC vs STLC Understanding</h2>
+  <div class="cycle-grid">
+    <div class="cycle-box">
+      <h3>SDLC — Software Development</h3>
+      <ul class="cycle-list">
+        <li>Requirement Gathering</li>
+        <li>System Design</li>
+        <li>Implementation / Coding</li>
+        <li>Testing</li>
+        <li>Deployment</li>
+        <li>Maintenance</li>
+      </ul>
+    </div>
+    <div class="cycle-box" style="--accent:var(--accent2);">
+      <h3 style="color:var(--accent2);">STLC — Software Testing</h3>
+      <ul class="cycle-list" style="--accent:var(--accent2);">
+        <li>Requirement Analysis</li>
+        <li>Test Planning</li>
+        <li>Test Case Development</li>
+        <li>Test Environment Setup</li>
+        <li>Test Execution</li>
+        <li>Test Closure</li>
+      </ul>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span>© 2025 Ritik Chauhan</span>
+  <span>MCA · Chandigarh University</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Ritik Chauhan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0f;--surface:#111118;--card:#16161f;--accent:#00e5ff;--accent2:#7b61ff;--accent3:#ff6b6b;--text:#e8e8f0;--muted:#6b6b80;--border:rgba(255,255,255,0.07);}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--accent);text-decoration:none;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.82rem;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.25s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--accent);}
+
+  .page-hero{padding:10rem 4rem 5rem;background:var(--surface);position:relative;overflow:hidden;}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 10% 50%,rgba(0,229,255,0.06),transparent);}
+  .page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+  .page-label{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+  .page-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,5vw,5rem);letter-spacing:-0.03em;line-height:1;margin-bottom:1rem;}
+  .page-sub{color:var(--muted);max-width:550px;font-size:1rem;line-height:1.7;}
+
+  main{max-width:1100px;margin:0 auto;padding:5rem 4rem;}
+
+  /* BIG PROJECT CARDS */
+  .project-feature{
+    background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:2.5rem;margin-bottom:2rem;
+    display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;
+    position:relative;overflow:hidden;
+    transition:transform 0.25s,border-color 0.3s;
+  }
+  .project-feature:hover{transform:translateY(-4px);border-color:rgba(0,229,255,0.2);}
+  .project-feature::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(var(--accent),var(--accent2));}
+
+  .proj-num{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:0.5rem;letter-spacing:0.1em;}
+  .proj-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-0.02em;margin-bottom:0.8rem;}
+  .proj-desc{color:rgba(232,232,240,0.7);line-height:1.7;font-size:0.95rem;margin-bottom:1.2rem;}
+
+  .tech-stack{display:flex;flex-wrap:wrap;gap:0.5rem;}
+  .tech-tag{font-family:'DM Mono',monospace;font-size:0.7rem;padding:0.3rem 0.7rem;border-radius:100px;background:rgba(0,229,255,0.07);border:1px solid rgba(0,229,255,0.2);color:var(--accent);}
+
+  .proj-meta{text-align:right;flex-shrink:0;}
+  .proj-type{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:4px;padding:0.3rem 0.7rem;display:inline-block;margin-bottom:1rem;}
+
+  .proj-highlights{list-style:none;margin-top:1rem;}
+  .proj-highlights li{font-size:0.85rem;color:var(--muted);padding:0.3rem 0;padding-left:1rem;position:relative;line-height:1.5;}
+  .proj-highlights li::before{content:'›';position:absolute;left:0;color:var(--accent);}
+
+  /* QA mini cards */
+  .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem;}
+  .mini-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:transform 0.2s,border-color 0.25s;}
+  .mini-card:hover{transform:translateY(-3px);border-color:rgba(123,97,255,0.2);}
+  .mini-card-icon{font-size:1.5rem;margin-bottom:0.75rem;}
+  .mini-card h4{font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:0.5rem;}
+  .mini-card p{font-size:0.8rem;color:var(--muted);line-height:1.5;}
+
+  h2.section-h{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-0.02em;margin:4rem 0 1.5rem;}
+
+  .research-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;margin-top:1rem;position:relative;overflow:hidden;}
+  .research-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent3),var(--accent2));}
+  .research-box h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:0.5rem;}
+  .research-box p{font-size:0.88rem;color:var(--muted);line-height:1.7;}
+  .research-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:0.7rem;padding:0.3rem 0.7rem;border-radius:4px;background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.2);color:var(--accent3);margin-bottom:1rem;}
+
+  footer{padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}.nav-links{gap:1rem;}
+    .page-hero,main{padding-left:1.5rem;padding-right:1.5rem;}
+    .project-feature{grid-template-columns:1fr;}
+    .mini-grid{grid-template-columns:1fr;}
+    footer{flex-direction:column;gap:0.5rem;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">RC</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="qa.html">QA Work</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-label">My Work</div>
+    <h1 class="page-title">Projects</h1>
+    <p class="page-sub">From data visualization to ML-powered chatbots — here's what I've built independently.</p>
+  </div>
+</div>
+
+<main>
+  <!-- DEV PROJECTS -->
+  <h2 class="section-h">Development Projects</h2>
+
+  <div class="project-feature">
+    <div>
+      <div class="proj-num">01 — Data Visualization</div>
+      <h2 class="proj-title">Weather Data Visualization</h2>
+      <p class="proj-desc">Independently developed a comprehensive weather trend analysis system that processes real-world datasets to produce interactive and informative charts and graphs. The project demonstrates end-to-end data pipeline skills from data ingestion to visual insight.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Pandas</span>
+        <span class="tech-tag">NumPy</span>
+        <span class="tech-tag">Matplotlib</span>
+      </div>
+    </div>
+    <div class="proj-meta">
+      <span class="proj-type">Data Analysis</span>
+      <ul class="proj-highlights">
+        <li>Multi-chart dashboard</li>
+        <li>Weather trend analysis</li>
+        <li>Independent development</li>
+        <li>Data pipeline design</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="project-feature">
+    <div>
+      <div class="proj-num">02 — Desktop Application</div>
+      <h2 class="proj-title">Employee Management System</h2>
+      <p class="proj-desc">A fully functional desktop application for managing employee records, built from scratch with a GUI interface and persistent SQL database backend. Supports full CRUD operations, search, and reporting — designed to handle real organizational needs.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Tkinter</span>
+        <span class="tech-tag">SQL</span>
+        <span class="tech-tag">SQLite</span>
+      </div>
+    </div>
+    <div class="proj-meta">
+      <span class="proj-type">GUI App</span>
+      <ul class="proj-highlights">
+        <li>CRUD operations</li>
+        <li>Database integration</li>
+        <li>GUI with Tkinter</li>
+        <li>Full-stack desktop app</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="project-feature">
+    <div>
+      <div class="proj-num">03 — Artificial Intelligence</div>
+      <h2 class="proj-title">Mental Health Chatbot</h2>
+      <p class="proj-desc">An independently developed AI chatbot combining rule-based logic with machine learning to provide supportive responses for mental health guidance. Blends NLP pattern recognition with ML-driven response selection to simulate empathetic conversation.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Machine Learning</span>
+        <span class="tech-tag">NLP</span>
+        <span class="tech-tag">Scikit-learn</span>
+      </div>
+    </div>
+    <div class="proj-meta">
+      <span class="proj-type">AI / ML</span>
+      <ul class="proj-highlights">
+        <li>Rule-based logic</li>
+        <li>ML-driven responses</li>
+        <li>Mental health focus</li>
+        <li>NLP processing</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- QA MINI PROJECTS -->
+  <h2 class="section-h">QA & Testing Projects</h2>
+  <div class="mini-grid">
+    <div class="mini-card">
+      <div class="mini-card-icon">🛒</div>
+      <h4>E-Com360 Testing</h4>
+      <p>Manual testing of e-commerce platform — login, registration, and checkout modules with full defect documentation.</p>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">🌐</div>
+      <h4>Web App Testing</h4>
+      <p>Tested forms, validations and UI components for academic project. Maintained structured test reports in Excel.</p>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">🔌</div>
+      <h4>API Testing – Postman</h4>
+      <p>Verified GET/POST APIs including response codes, data accuracy, and edge case handling with invalid inputs.</p>
+    </div>
+  </div>
+
+  <!-- RESEARCH -->
+  <h2 class="section-h">Research Publication</h2>
+  <div class="research-box">
+    <span class="research-badge">Published · IJARIIT</span>
+    <h3>Hybrid Logistic Regression and Random Forest Model for Diabetes Prediction Using Feature Elimination</h3>
+    <p style="margin-top:0.6rem;">International Journal of Advance Research, Ideas and Innovations in Technology (IJARIIT) — Volume 11, Issue 5, September–October 2025. A hybrid machine learning approach combining logistic regression with random forest classifiers to improve diabetes prediction accuracy through strategic feature elimination.</p>
+  </div>
+</main>
+
+<footer>
+  <span>© 2025 Ritik Chauhan</span>
+  <span>MCA · Chandigarh University</span>
+</footer>
+
+</body>
+</html>
